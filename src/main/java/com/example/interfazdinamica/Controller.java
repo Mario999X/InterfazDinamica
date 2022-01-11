@@ -1,41 +1,86 @@
 package com.example.interfazdinamica;
 
-import javafx.animation.Animation;
+
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.util.Duration;
 
-public class Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
+
+    private boolean desplegado;
+
+    private TranslateTransition animation, animationBtn;
 
     @FXML
-    Animation animacionMenu;
+    private Button btnMenu;
     @FXML
-    Button btnMenu;
+    private VBox vBoxIzquierda;
     @FXML
-    VBox vBoxIzquierda;
+    private StackPane ventana;
 
     public Controller() {
-        animacionMenu = new TranslateTransition(Duration.millis(100), vBoxIzquierda);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        vBoxIzquierda.setTranslateX(-100);
+        desplegado = false;
+    }
+
+    private void desplegacion() {
+        animation = new TranslateTransition(Duration.millis(300), vBoxIzquierda);
+        animationBtn = new TranslateTransition(Duration.millis(300), btnMenu);
+
+        if (!desplegado) {
+            animation.setFromX(-vBoxIzquierda.getWidth());
+            animation.setToX(0);
+            animationBtn.setFromX(0);
+            animationBtn.setToX(vBoxIzquierda.getWidth());
+            desplegado = true;
+        } else {
+            animation.setFromX(0);
+            animation.setToX(-vBoxIzquierda.getWidth());
+            animationBtn.setFromX(vBoxIzquierda.getWidth());
+            animationBtn.setToX(0);
+            desplegado = false;
+        }
+        animation.play();
+        animationBtn.play();
     }
 
 
-    /*
-    public void animacionMenu(){
-
-
-        animacionMenu.setFromX(mostrar ? 0 : panelMenu.getWidth());
-        animacionMenu.setToX(mostrar ? panelMenu.getWidth() : 0);
-        animacionMenu.play();
-
+    @FXML
+    protected void despliegueTotal() {
+        desplegacion();
     }
 
-    public void initComponents() {
-        animacionMenu();
+
+    @FXML
+    protected void vista1() {
+        ventana.setBackground(new Background(
+                new BackgroundImage(
+                        new Image("Vista1.jpg", ventana.getWidth(), ventana.getHeight(), false, true),
+                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                        BackgroundSize.DEFAULT)));
+        desplegacion();
+    }
+
+    @FXML
+    protected void vista2() {
+        ventana.setBackground(new Background(
+                new BackgroundImage(
+                        new Image("Vista2.jpg", ventana.getWidth(), ventana.getHeight(), false, true),
+                        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER,
+                        BackgroundSize.DEFAULT)));
+        desplegacion();
 
     }
-*/
-
 }
+

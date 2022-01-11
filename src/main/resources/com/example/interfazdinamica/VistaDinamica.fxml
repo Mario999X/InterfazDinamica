@@ -4,17 +4,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #71bcf5;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="ventana" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #71bcf5;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.interfazdinamica.Controller">
    <children>
       <VBox fx:id="vBoxIzquierda" maxWidth="-Infinity" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #edf4fa;" StackPane.alignment="TOP_LEFT">
          <children>
-            <Button fx:id="btnPanel1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ver Panel 1" />
-            <Button fx:id="btnPanel2" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ver Panel 2" />
+            <Button fx:id="btnPanel1" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#vista1" text="Ver Panel 1" />
+            <Button fx:id="btnPanel2" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#vista2" text="Ver Panel 2" />
          </children>
          <StackPane.margin>
             <Insets />
          </StackPane.margin>
       </VBox>
-      <Button fx:id="btnMenu" mnemonicParsing="false" text="Ver menu" StackPane.alignment="TOP_LEFT" />
+      <Button fx:id="btnMenu" mnemonicParsing="false" onAction="#despliegueTotal" text="Ver menu" StackPane.alignment="TOP_LEFT" />
    </children>
 </StackPane>
